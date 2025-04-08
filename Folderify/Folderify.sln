@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folderify.App", "Folderify.App\Folderify.App.csproj", "{316DBDB4-1257-4E5C-95E7-B40114776DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folderify.Test", "Folderify.Test\Folderify.Test.csproj", "{C5C814DD-B516-414E-8D79-7097D927A32B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{316DBDB4-1257-4E5C-95E7-B40114776DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{316DBDB4-1257-4E5C-95E7-B40114776DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{316DBDB4-1257-4E5C-95E7-B40114776DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C814DD-B516-414E-8D79-7097D927A32B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C814DD-B516-414E-8D79-7097D927A32B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C814DD-B516-414E-8D79-7097D927A32B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C814DD-B516-414E-8D79-7097D927A32B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

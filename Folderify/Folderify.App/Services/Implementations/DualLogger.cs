@@ -13,10 +13,16 @@ namespace Folderify.App.Services.Implementations
 
         public void Log(string message)
         {
-            var timestampedMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
-            Console.WriteLine(timestampedMessage);
-            File.AppendAllText(_logFilePath, timestampedMessage + Environment.NewLine);
+            try
+            {
+                var timestampedMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+                Console.WriteLine(timestampedMessage);
+                File.AppendAllText(_logFilePath, timestampedMessage + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error writing to log: {ex.Message}");
+            }
         }
     }
-
 }

@@ -19,20 +19,41 @@ namespace Folderify.App.Services.Implementations
 
         public void Synchronize()
         {
-            foreach (var file in _comparer.GetFilesToCopy())
+            try
             {
-                var sourcePath = Path.Combine(_source, file);
-                var replicaPath = Path.Combine(_replica, file);
-                Directory.CreateDirectory(Path.GetDirectoryName(replicaPath)!);
-                File.Copy(sourcePath, replicaPath, true);
-                _logger.Log($"Copied/Updated: {file}");
-            }
+                foreach (var file in _comparer.GetFilesToCopy())
+                {
+                    try
+                    {
+                        var sourcePath = Path.Combine(_source, file);
+                        var replicaPath = Path.Combine(_replica, file);
+                        Directory.CreateDirectory(Path.GetDirectoryName(replicaPath)!);
+                        File.Copy(sourcePath, replicaPath, true);
+                        _logger.Log($"Copied/Updated: {file}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Log($"Error copying file {file}: {ex.Message}");
+                    }
+                }
 
-            foreach (var file in _comparer.GetFilesToDelete())
+                foreach (var file in _comparer.GetFilesToDelete())
+                {
+                    try
+                    {
+                        var replicaPath = Path.Combine(_replica, file);
+                        File.Delete(replicaPath);
+                        _logger.Log($"Deleted: {file}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Log($"Error deleting file {file}: {ex.Message}");
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                var replicaPath = Path.Combine(_replica, file);
-                File.Delete(replicaPath);
-                _logger.Log($"Deleted: {file}");
+                _logger.Log($"Synchronization error: {ex.Message}");
             }
         }
     }

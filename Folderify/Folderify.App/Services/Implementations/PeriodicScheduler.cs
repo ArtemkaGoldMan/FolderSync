@@ -18,10 +18,26 @@ namespace Folderify.App.Services.Implementations
 
         public void Start()
         {
-            _logger.Log("Starting folder synchronization scheduler...");
-            _timer = new Timer(_ => _synchronizer.Synchronize(), null, 0, _interval);
-            Console.ReadLine(); // keep app running
+            try
+            {
+                _logger.Log("Starting folder synchronization scheduler...");
+                _timer = new Timer(_ => 
+                {
+                    try
+                    {
+                        _synchronizer.Synchronize();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Log($"Error during synchronization: {ex.Message}");
+                    }
+                }, null, 0, _interval);
+                Console.ReadLine(); // keep app running
+            }
+            catch (Exception ex)
+            {
+                _logger.Log($"Scheduler startup error: {ex.Message}");
+            }
         }
     }
-
 }
